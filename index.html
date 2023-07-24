@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kas</title>
+    <style>
+        /* CSS untuk desain elemen li */
+        ul {
+            padding-left: 0; /* Menghilangkan padding pada ul */
+        }
+
+        li {
+            list-style-type: none; /* Menghilangkan bullet point pada elemen li */
+            display: flex; /* Menggunakan flexbox agar tombol bisa disamping kanan */
+            align-items: center; /* Agar konten vertikal di tengah */
+            justify-content: space-between; /* Agar tombol ada di samping kanan */
+            margin-bottom: 20px; /* Jarak antara setiap elemen li */
+            border: 1px solid black;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px; /* Jarak antara h1 dan paragraf pertama */
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6; /* Jarak antara baris dalam paragraf */
+            margin-bottom: 10px; /* Jarak antara paragraf */
+        }
+
+        .button {
+            background-color: green; /* Warna latar belakang tombol hijau */
+            color: white; /* Warna teks putih */
+            padding: 8px 16px; /* Padding tombol */
+            border: none; /* Menghilangkan border tombol */
+            border-radius: 4px; /* Membuat sudut tombol sedikit melengkung */
+            cursor: pointer; /* Mengubah kursor saat diarahkan ke tombol */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search">
+            <input type="text" name="" id="" placeholder="Masukkan Nama Yang Ingin Di Cari">
+        </div>
+        <br>
+        <div class="konten">
+            <ul id="uls"></ul>
+        </div>
+    </div>
+    <script src="framework/AmbilDataGoogleSheets.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
