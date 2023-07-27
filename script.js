@@ -19,6 +19,9 @@ let mode_Admin = false;
 // Ambil elemen input dengan id "cari"
 const btnSearch = document.getElementById("button-addon2");
 const searchInput = document.getElementById("cari");
+const datalistOptions = document.getElementById("datalistOptions")
+
+
 
 // Tambahkan event listener untuk click event pada btnSearch
 btnSearch.addEventListener("click", () => {
@@ -45,6 +48,14 @@ btnSearch.addEventListener("click", () => {
 let dataFetchInterval = setInterval(() => {
   tampilkan(); // Update the data display periodically
 }, 500); // Ganti angka 500 dengan waktu yang sesuai untuk menunggu fetch selesai
+
+setTimeout(()=>{
+  for(let i = 1; i < nama.result.length; i++){
+    datalistOptions.innerHTML += `
+    <option value="${nama.result[i].value}">
+    `
+  }
+}, 1000)
 
 function tampilkan() {
   // Tampilkan data sesuai dengan pencarian
@@ -126,6 +137,15 @@ function tampilkan() {
   document.getElementById("kas_list").innerHTML = list;
 }
 
+function populateDatalistOptions() {
+  for (let i = 1; i < nama.result.length; i++) {
+    datalistOptions.innerHTML += `
+    <option value="${nama.result[i].value}">
+    `;
+  }
+}
+
+setTimeout(populateDatalistOptions, 2000);
 
 function tambah(v, data) {
   let rows = v.id;
