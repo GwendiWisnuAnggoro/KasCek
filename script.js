@@ -127,28 +127,36 @@ function tampilkan() {
 }
 
 
-function tambah(v, data){
-  let rows = v.id,
-  code = tambah_kurang_code,
-  dataSekarang = parseInt(data),
-  tmbh_krng = document.getElementById("tmbh_krng");
-  
-  let tambah = (dataSekarang + tmbh_krng.value).toString();
-  new EditValues(code, rows, tambah)
-  tmbh_krng.value = 0
+function tambah(v, data) {
+  let rows = v.id;
+  let code = tambah_kurang_code;
+  let dataSekarang = Number(data);
+  let tmbh_krng = document.getElementById("tmbh_krng");
+  let tambahValue = Number(tmbh_krng.value);
+
+  let newValue = Math.round(dataSekarang + tambahValue);
+
+  if (newValue > 52) {
+    newValue = 52;
+  }
+
+  new EditValues(code, rows, newValue.toString());
+  tmbh_krng.value = 0;
 }
 
-function kurangi(v, data){
-  let rows = v.id,
-  code = tambah_kurang_code,
-  dataSekarang = parseInt(data),
-  tmbh_krng = document.getElementById("tmbh_krng");
+function kurangi(v, data) {
+  let rows = v.id;
+  let code = tambah_kurang_code;
+  let dataSekarang = Number(data);
+  let tmbh_krng = document.getElementById("tmbh_krng");
+  let kurangValue = Number(tmbh_krng.value);
 
-  let kurang = (dataSekarang - tmbh_krng.value);
-  if(kurang < 0){
-    new EditValues(code, rows, "0")
-  } else {
-    new EditValues(code, rows, kurang.toString())
+  let newValue = Math.round(dataSekarang - kurangValue);
+
+  if (newValue < 0) {
+    newValue = 0;
   }
-  tmbh_krng.value = 0
+
+  new EditValues(code, rows, newValue.toString());
+  tmbh_krng.value = 0;
 }
