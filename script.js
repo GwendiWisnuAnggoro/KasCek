@@ -10,12 +10,13 @@ let nama = new AmbilData(idSheets, nama_code);
 let kas = new AmbilData(idSheets, kas_code);
 let kurang = new AmbilData(idSheets, kurang_code);
 let edit = new AmbilData(idSheets, tambah_kurang_code);
+let bulan_Kemarin = new AmbilData(idSheets, "F")
+let bulan_Kemarin_Edit = new AmbilData(idSheets, "G")
 const totalKas = 52 * 2000;
 let list = ""; // Variabel list sebagai variabel global
 let searchText = ""; // Variabel untuk menyimpan nilai dari input search
 const code_Admin = "mse1683y24r3q2fk1c8daniq58pxftzp";
 let mode_Admin = false;
-
 // Ambil elemen input dengan id "cari"
 const btnSearch = document.getElementById("button-addon2");
 const searchInput = document.getElementById("cari");
@@ -77,7 +78,6 @@ function tampilkan() {
       // Update panjang teks sebelumnya untuk perbandingan berikutnya.
       previousLength = currentLength;
   });
-  
 
   // Jika ada perubahan pada input search, update searchText
   if (currentSearchText !== searchText) {
@@ -89,18 +89,26 @@ function tampilkan() {
         if(!mode_Admin){
           list += `
           <li class="list-group-item">
+          <br>
             <h1>${nama.result[i].value}</h1>
+            <h2><i>Tahun ini:</i></h2>
             <p>Kas Kamu Saat Ini: ${kas.result[i].value}</p>
             <p>Kamu Kurang: ${kurang.result[i].value}</p>
+            <h2><i>Bulan Kemarin:</i></h2>
+            <p>Kamu Kurang: ${bulan_Kemarin.result[i].value !== 0 ? bulan_Kemarin.result[i].value : "Lunas"}</p>
           </li>`;
         } else {
           list += `
           <li class="list-group-item">
+          <br>
             <h1>${nama.result[i].value}</h1>
+            <h2><i>Tahun ini:</i></h2>
             <p>Kas Kamu Saat Ini: ${kas.result[i].value}</p>
             <p>Kamu Kurang: ${kurang.result[i].value}</p>
+            <h2><i>Bulan Kemarin:</i></h2>
+            <p>Kamu Kurang: ${bulan_Kemarin.result[i].value !== 0 ? bulan_Kemarin.result[i].value : "Lunas"}</p>
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-              <button type="button" class="btn btn-success" id="${nama.result[i].rows}" onclick="tambah(this, ${edit.result[i].value})">+</button>
+              <button type="button" class="btn btn-success" id="${nama.result[i].rows}" onclick="tambah(this, ${edit.result[i].value}, ${bulan_Kemarin.result[i].value !== 0 ? bulan_Kemarin.result[i].value : 0}, ${bulan_Kemarin_Edit.result[i].value})">+</button>
               <button type="button" class="btn btn-danger" id="${nama.result[i].rows}" onclick="kurangi(this, ${edit.result[i].value})">-</button>
             </div>
           </li>`;
@@ -113,18 +121,26 @@ function tampilkan() {
       if(!mode_Admin){
         list += `
         <li class="list-group-item">
+        <br>
           <h1>${nama.result[i].value}</h1>
+          <h2><i>Tahun ini:</i></h2>
           <p>Kas Kamu Saat Ini: ${kas.result[i].value}</p>
           <p>Kamu Kurang: ${kurang.result[i].value}</p>
+          <h2><i>Bulan Kemarin:</i></h2>
+          <p>Kamu Kurang: ${bulan_Kemarin.result[i].value !== 0 ? bulan_Kemarin.result[i].value : "Lunas"}</p>
         </li>`;
       } else {
         list += `
         <li class="list-group-item">
+        <br>
           <h1>${nama.result[i].value}</h1>
+          <h2><i>Tahun ini:</i></h2> 
           <p>Kas Kamu Saat Ini: ${kas.result[i].value}</p>
           <p>Kamu Kurang: ${kurang.result[i].value}</p>
+          <h2><i>Bulan Kemarin:</i></h2>
+          <p>Kamu Kurang: ${bulan_Kemarin.result[i].value !== 0 ? bulan_Kemarin.result[i].value : "Lunas"}</p>
           <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <button type="button" class="btn btn-success" id="${nama.result[i].rows}" onclick="tambah(this, ${edit.result[i].value})">+</button>
+            <button type="button" class="btn btn-success" id="${nama.result[i].rows}" onclick="tambah(this, ${edit.result[i].value}, ${bulan_Kemarin.result[i].value !== 0 ? bulan_Kemarin.result[i].value : 0}, ${bulan_Kemarin_Edit.result[i].value})">+</button>
             <button type="button" class="btn btn-danger" id="${nama.result[i].rows}" onclick="kurangi(this, ${edit.result[i].value})">-</button>
           </div>
         </li>`;
@@ -147,22 +163,28 @@ function populateDatalistOptions() {
 
 setTimeout(populateDatalistOptions, 2000);
 
-function tambah(v, data) {
+function tambah(v, data, bulanK, editblnkemarin) {
   let rows = v.id;
   let code = tambah_kurang_code;
   let dataSekarang = Number(data);
   let tmbh_krng = document.getElementById("tmbh_krng");
-  let tambahValue = Number(tmbh_krng.value);
+  console.log(bulanK)
 
-  let newValue = Math.round(dataSekarang + tambahValue);
+  if (bulanK === 0) {
+    let tambahValue = Number(tmbh_krng.value);
 
-  if (newValue > 52) {
-    newValue = 52;
+    let newValue = Math.min(52, Math.round(dataSekarang + tambahValue));
+
+    new EditValues(code, rows, newValue.toString());
+  } else {
+    let dataEditBulanKemarin = Number(editblnkemarin);
+    let valueBaru = Math.round(dataEditBulanKemarin + Number(tmbh_krng.value));
+    new EditValues("G", rows, valueBaru);
   }
 
-  new EditValues(code, rows, newValue.toString());
   tmbh_krng.value = 0;
 }
+
 
 function kurangi(v, data) {
   let rows = v.id;
@@ -180,3 +202,24 @@ function kurangi(v, data) {
   new EditValues(code, rows, newValue.toString());
   tmbh_krng.value = 0;
 }
+
+
+function getRandomColor() {
+  // Generate a random hue value between 0 and 360
+  const hue = Math.floor(Math.random() * 361);
+  // Create an HSL color string with the random hue, and fixed saturation and lightness values
+  const color = `hsl(${hue}, 70%, 60%)`;
+  return color;
+}
+
+// Mencegah tindakan klik kanan
+window.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+});
+
+// Mencegah beberapa pintasan keyboard
+window.addEventListener('keydown', function (e) {
+  if (e.ctrlKey && (e.key === 'Shift' || e.key === 'C' || e.key === 'I' || e.key === 'J' || e.key === 'U')) {
+    e.preventDefault();
+  }
+});
