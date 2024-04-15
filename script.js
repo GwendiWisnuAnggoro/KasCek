@@ -5,9 +5,11 @@ const idSheets = "1kMfONdlnYgFyR25YmZ3QKrAjE9HHVsmyrfPjwZ3rke8";
 let nama_code = "B",
 kas_code = "C",
 kurang_code = "D",
-tambah_kurang_code = "E";
+tambah_kurang_code = "E",
+total_code = "F";
 let nama = new AmbilData(idSheets, nama_code);
 let kas = new AmbilData(idSheets, kas_code);
+let totals = new AmbilData(idSheets, total_code);
 let kurang = new AmbilData(idSheets, kurang_code);
 let edit = new AmbilData(idSheets, tambah_kurang_code);
 let bulan_Kemarin = new AmbilData(idSheets, "F")
@@ -61,6 +63,10 @@ setTimeout(()=>{
 function tampilkan() {
   // Tampilkan data sesuai dengan pencarian
   list = ""; // Variabel list diinisialisasi dengan string kosong
+
+  for(let i = 1; i < totals.result.length; i++){
+    let totalKas = totals.result[1].value
+  }
   
   if (searchText) {
     // Ambil nilai dari input search
