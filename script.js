@@ -64,8 +64,8 @@ function tampilkan() {
   // Tampilkan data sesuai dengan pencarian
   list = ""; // Variabel list diinisialisasi dengan string kosong
 
-  for(let i = 1; i < totals.result.length; i++){
-    let totalKas = totals.result[1].value
+  for(let i = 0; i < totals.result.length; i++){
+    let totalKas = totals.result[0].value
 
     document.getElementById("tampilkanTotalKas").innerText = `Total Kas: ${totalKas}`
   }
