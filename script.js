@@ -63,13 +63,11 @@ setTimeout(()=>{
 function tampilkan() {
   // Tampilkan data sesuai dengan pencarian
   list = ""; // Variabel list diinisialisasi dengan string kosong
-
-  for(let i = 0; i < totals.result.length; i++){
-    let totalKas = totals.result[0].value
-
-    document.getElementById("tampilkanTotalKas").innerText = `Total Kas: ${totalKas}`
-  }
+  document.getElementById("tampilkanTotalKas").innerText = ``
   
+  let totalKas = totals.result[0].value
+  document.getElementById("tampilkanTotalKas").innerText = `Total Kas: ${totalKas}`
+
   if (searchText) {
     // Ambil nilai dari input search
     let currentSearchText = searchText.toLowerCase();
