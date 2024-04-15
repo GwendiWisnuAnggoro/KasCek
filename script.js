@@ -66,6 +66,8 @@ function tampilkan() {
 
   for(let i = 1; i < totals.result.length; i++){
     let totalKas = totals.result[1].value
+
+    document.getElementById("tampilkanTotalKas").innerText = `Total Kas: ${totalKas}`
   }
   
   if (searchText) {
