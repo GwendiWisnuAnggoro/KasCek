@@ -123,26 +123,18 @@ function tampilkan() {
         <li class="list-group-item">
         <br>
           <h1>${nama.result[i].value}</h1>
-          <h2><i>Tahun ini:</i></h2>
+          <h2><i>Kas:</i></h2>
           <p>Kas Kamu Saat Ini: ${kas.result[i].value}</p>
           <p>Kamu Kurang: ${kurang.result[i].value}</p>
-          <h2><i>Bulan Kemarin:</i></h2>
-          <p>Kamu Kurang: ${bulan_Kemarin.result[i].value !== 0 ? bulan_Kemarin.result[i].value : "Lunas"}</p>
         </li>`;
       } else {
         list += `
         <li class="list-group-item">
         <br>
           <h1>${nama.result[i].value}</h1>
-          <h2><i>Tahun ini:</i></h2> 
+          <h2><i>Kas:</i></h2> 
           <p>Kas Kamu Saat Ini: ${kas.result[i].value}</p>
           <p>Kamu Kurang: ${kurang.result[i].value}</p>
-          <h2><i>Bulan Kemarin:</i></h2>
-          <p>Kamu Kurang: ${bulan_Kemarin.result[i].value !== 0 ? bulan_Kemarin.result[i].value : "Lunas"}</p>
-          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <button type="button" class="btn btn-success" id="${nama.result[i].rows}" onclick="tambah(this, ${edit.result[i].value}, ${bulan_Kemarin.result[i].value !== 0 ? bulan_Kemarin.result[i].value : 0}, ${bulan_Kemarin_Edit.result[i].value})">+</button>
-            <button type="button" class="btn btn-danger" id="${nama.result[i].rows}" onclick="kurangi(this, ${edit.result[i].value})">-</button>
-          </div>
         </li>`;
 
       }
