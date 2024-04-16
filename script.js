@@ -98,8 +98,8 @@ function tampilkan() {
           <br>
             <h1>${nama.result[i].value}</h1>
             <h2><i>Kas:</i></h2>
-            <p>Kas Kamu Saat Ini: ${kas.result[i].value}</p>
-            <p>Kamu Kurang: ${kurang.result[i].value}</p>
+            <p>Kas Kamu Saat Ini: Rp.${kas.result[i].value}</p>
+            <p>Keterangan: : ${((kurang.result[i].value).toString()) == "0" ? "Lunas" : "Kurang Rp." + (kurang.result[i].value).toString()}</p>
           </li>`;
         } else {
           list += `
@@ -107,8 +107,8 @@ function tampilkan() {
           <br>
             <h1>${nama.result[i].value}</h1>
             <h2><i>Kas:</i></h2>
-            <p>Kas Kamu Saat Ini: ${kas.result[i].value}</p>
-            <p>Kamu Kurang: ${kurang.result[i].value}</p>
+            <p>Kas Kamu Saat Ini: Rp.${kas.result[i].value}</p>
+            <p>Keterangan: : ${((kurang.result[i].value).toString()) == "0" ? "Lunas" : "Kurang Rp." + (kurang.result[i].value).toString()}</p>
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
               <button type="button" class="btn btn-success" id="${nama.result[i].rows}" onclick="tambah(this, ${edit.result[i].value}, ${bulan_Kemarin.result[i].value !== 0 ? bulan_Kemarin.result[i].value : 0}, ${bulan_Kemarin_Edit.result[i].value})">+</button>
               <button type="button" class="btn btn-danger" id="${nama.result[i].rows}" onclick="kurangi(this, ${edit.result[i].value})">-</button>
@@ -126,8 +126,8 @@ function tampilkan() {
         <br>
           <h1>${nama.result[i].value}</h1>
           <h2><i>Kas:</i></h2>
-          <p>Kas Kamu Saat Ini: ${kas.result[i].value}</p>
-          <p>Kamu Kurang: ${kurang.result[i].value}</p>
+          <p>Kas Kamu Saat Ini: Rp.${kas.result[i].value}</p>
+          <p>Keterangan: : ${((kurang.result[i].value).toString()) == "0" ? "Lunas" : "Kurang Rp." + (kurang.result[i].value).toString()}</p>
         </li>`;
       } else {
         list += `
@@ -135,8 +135,8 @@ function tampilkan() {
         <br>
           <h1>${nama.result[i].value}</h1>
           <h2><i>Kas:</i></h2> 
-          <p>Kas Kamu Saat Ini: ${kas.result[i].value}</p>
-          <p>Kamu Kurang: ${kurang.result[i].value}</p>
+          <p>Kas Kamu Saat Ini: Rp.${kas.result[i].value}</p>
+          <p>Keterangan: : ${((kurang.result[i].value).toString()) == "0" ? "Lunas" : "Kurang Rp." + (kurang.result[i].value).toString()}</p>
           <div class="btn-group" role="group" aria-label="Basic mixed styles example">
               <button type="button" class="btn btn-success" id="${nama.result[i].rows}" onclick="tambah(this, ${edit.result[i].value}, ${bulan_Kemarin.result[i].value !== 0 ? bulan_Kemarin.result[i].value : 0}, ${bulan_Kemarin_Edit.result[i].value})">+</button>
               <button type="button" class="btn btn-danger" id="${nama.result[i].rows}" onclick="kurangi(this, ${edit.result[i].value})">-</button>
